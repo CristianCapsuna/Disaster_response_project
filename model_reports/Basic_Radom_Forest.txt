@@ -1,0 +1,351 @@
+Current column is related.
+
+              precision    recall  f1-score   support
+
+         0.0       0.30      0.05      0.08      1187
+         1.0       0.77      0.97      0.86      4012
+         2.0       0.25      0.02      0.04        43
+
+    accuracy                           0.75      5242
+   macro avg       0.44      0.35      0.33      5242
+weighted avg       0.66      0.75      0.67      5242
+Current column is request.
+
+              precision    recall  f1-score   support
+
+         0.0       0.84      0.98      0.90      4359
+         1.0       0.41      0.06      0.10       883
+
+    accuracy                           0.83      5242
+   macro avg       0.62      0.52      0.50      5242
+weighted avg       0.77      0.83      0.77      5242
+Current column is offer.
+
+              precision    recall  f1-score   support
+
+         0.0       0.99      1.00      1.00      5215
+         1.0       0.00      0.00      0.00        27
+
+    accuracy                           0.99      5242
+   macro avg       0.50      0.50      0.50      5242
+weighted avg       0.99      0.99      0.99      5242
+Current column is aid_related.
+
+              precision    recall  f1-score   support
+
+         0.0       0.59      0.81      0.69      3066
+         1.0       0.44      0.21      0.28      2176
+
+    accuracy                           0.56      5242
+   macro avg       0.52      0.51      0.48      5242
+weighted avg       0.53      0.56      0.52      5242
+Current column is medical_help.
+
+              precision    recall  f1-score   support
+
+         0.0       0.93      1.00      0.96      4852
+         1.0       0.06      0.00      0.00       390
+
+    accuracy                           0.92      5242
+   macro avg       0.49      0.50      0.48      5242
+weighted avg       0.86      0.92      0.89      5242
+Current column is medical_products.
+
+              precision    recall  f1-score   support
+
+         0.0       0.95      1.00      0.97      4979
+         1.0       0.22      0.01      0.01       263
+
+    accuracy                           0.95      5242
+   macro avg       0.59      0.50      0.49      5242
+weighted avg       0.91      0.95      0.93      5242
+Current column is search_and_rescue.
+
+              precision    recall  f1-score   support
+
+         0.0       0.97      1.00      0.99      5105
+         1.0       0.00      0.00      0.00       137
+
+    accuracy                           0.97      5242
+   macro avg       0.49      0.50      0.49      5242
+weighted avg       0.95      0.97      0.96      5242
+Current column is security.
+
+              precision    recall  f1-score   support
+
+         0.0       0.98      1.00      0.99      5148
+         1.0       0.00      0.00      0.00        94
+
+    accuracy                           0.98      5242
+   macro avg       0.49      0.50      0.50      5242
+weighted avg       0.96      0.98      0.97      5242
+Current column is military.
+
+              precision    recall  f1-score   support
+
+         0.0       0.96      1.00      0.98      5056
+         1.0       0.50      0.01      0.01       186
+
+    accuracy                           0.96      5242
+   macro avg       0.73      0.50      0.50      5242
+weighted avg       0.95      0.96      0.95      5242
+Current column is water.
+
+              precision    recall  f1-score   support
+
+         0.0       0.93      1.00      0.96      4900
+         1.0       0.07      0.00      0.01       342
+
+    accuracy                           0.93      5242
+   macro avg       0.50      0.50      0.49      5242
+weighted avg       0.88      0.93      0.90      5242
+Current column is food.
+
+              precision    recall  f1-score   support
+
+         0.0       0.89      1.00      0.94      4646
+         1.0       0.05      0.00      0.00       596
+
+    accuracy                           0.88      5242
+   macro avg       0.47      0.50      0.47      5242
+weighted avg       0.79      0.88      0.83      5242
+Current column is shelter.
+
+              precision    recall  f1-score   support
+
+         0.0       0.91      1.00      0.95      4770
+         1.0       0.12      0.01      0.01       472
+
+    accuracy                           0.91      5242
+   macro avg       0.52      0.50      0.48      5242
+weighted avg       0.84      0.91      0.87      5242
+Current column is clothing.
+
+              precision    recall  f1-score   support
+
+         0.0       0.98      1.00      0.99      5162
+         1.0       1.00      0.01      0.02        80
+
+    accuracy                           0.98      5242
+   macro avg       0.99      0.51      0.51      5242
+weighted avg       0.99      0.98      0.98      5242
+Current column is money.
+
+              precision    recall  f1-score   support
+
+         0.0       0.98      1.00      0.99      5124
+         1.0       0.00      0.00      0.00       118
+
+    accuracy                           0.98      5242
+   macro avg       0.49      0.50      0.49      5242
+weighted avg       0.96      0.98      0.97      5242
+Current column is missing_people.
+
+              precision    recall  f1-score   support
+
+         0.0       0.99      1.00      0.99      5179
+         1.0       0.00      0.00      0.00        63
+
+    accuracy                           0.99      5242
+   macro avg       0.49      0.50      0.50      5242
+weighted avg       0.98      0.99      0.98      5242
+Current column is refugees.
+
+              precision    recall  f1-score   support
+
+         0.0       0.96      1.00      0.98      5055
+         1.0       0.00      0.00      0.00       187
+
+    accuracy                           0.96      5242
+   macro avg       0.48      0.50      0.49      5242
+weighted avg       0.93      0.96      0.95      5242
+Current column is death.
+
+              precision    recall  f1-score   support
+
+         0.0       0.96      1.00      0.98      5013
+         1.0       0.00      0.00      0.00       229
+
+    accuracy                           0.96      5242
+   macro avg       0.48      0.50      0.49      5242
+weighted avg       0.91      0.96      0.93      5242
+Current column is other_aid.
+
+              precision    recall  f1-score   support
+
+         0.0       0.87      0.99      0.92      4543
+         1.0       0.13      0.01      0.02       699
+
+    accuracy                           0.86      5242
+   macro avg       0.50      0.50      0.47      5242
+weighted avg       0.77      0.86      0.80      5242
+Current column is infrastructure_related.
+
+              precision    recall  f1-score   support
+
+         0.0       0.93      1.00      0.96      4901
+         1.0       0.00      0.00      0.00       341
+
+    accuracy                           0.93      5242
+   macro avg       0.47      0.50      0.48      5242
+weighted avg       0.87      0.93      0.90      5242
+Current column is transport.
+
+              precision    recall  f1-score   support
+
+         0.0       0.96      1.00      0.98      5033
+         1.0       0.00      0.00      0.00       209
+
+    accuracy                           0.96      5242
+   macro avg       0.48      0.50      0.49      5242
+weighted avg       0.92      0.96      0.94      5242
+Current column is buildings.
+
+              precision    recall  f1-score   support
+
+         0.0       0.95      1.00      0.97      4985
+         1.0       0.19      0.01      0.02       257
+
+    accuracy                           0.95      5242
+   macro avg       0.57      0.50      0.50      5242
+weighted avg       0.91      0.95      0.93      5242
+Current column is electricity.
+
+              precision    recall  f1-score   support
+
+         0.0       0.98      1.00      0.99      5134
+         1.0       0.00      0.00      0.00       108
+
+    accuracy                           0.98      5242
+   macro avg       0.49      0.50      0.49      5242
+weighted avg       0.96      0.98      0.97      5242
+Current column is tools.
+
+              precision    recall  f1-score   support
+
+         0.0       0.99      1.00      1.00      5210
+         1.0       0.00      0.00      0.00        32
+
+    accuracy                           0.99      5242
+   macro avg       0.50      0.50      0.50      5242
+weighted avg       0.99      0.99      0.99      5242
+Current column is hospitals.
+
+              precision    recall  f1-score   support
+
+         0.0       0.99      1.00      0.99      5184
+         1.0       0.00      0.00      0.00        58
+
+    accuracy                           0.99      5242
+   macro avg       0.49      0.50      0.50      5242
+weighted avg       0.98      0.99      0.98      5242
+Current column is shops.
+
+              precision    recall  f1-score   support
+
+         0.0       0.99      1.00      1.00      5209
+         1.0       0.00      0.00      0.00        33
+
+    accuracy                           0.99      5242
+   macro avg       0.50      0.50      0.50      5242
+weighted avg       0.99      0.99      0.99      5242
+Current column is aid_centers.
+
+              precision    recall  f1-score   support
+
+         0.0       0.99      1.00      0.99      5183
+         1.0       0.00      0.00      0.00        59
+
+    accuracy                           0.99      5242
+   macro avg       0.49      0.50      0.50      5242
+weighted avg       0.98      0.99      0.98      5242
+Current column is other_infrastructure.
+
+              precision    recall  f1-score   support
+
+         0.0       0.96      1.00      0.98      5020
+         1.0       0.00      0.00      0.00       222
+
+    accuracy                           0.96      5242
+   macro avg       0.48      0.50      0.49      5242
+weighted avg       0.92      0.96      0.94      5242
+Current column is weather_related.
+
+              precision    recall  f1-score   support
+
+         0.0       0.75      0.95      0.84      3796
+         1.0       0.56      0.17      0.26      1446
+
+    accuracy                           0.73      5242
+   macro avg       0.66      0.56      0.55      5242
+weighted avg       0.70      0.73      0.68      5242
+Current column is floods.
+
+              precision    recall  f1-score   support
+
+         0.0       0.92      0.99      0.95      4803
+         1.0       0.17      0.02      0.03       439
+
+    accuracy                           0.91      5242
+   macro avg       0.55      0.50      0.49      5242
+weighted avg       0.85      0.91      0.88      5242
+Current column is storm.
+
+              precision    recall  f1-score   support
+
+         0.0       0.90      1.00      0.95      4730
+         1.0       0.38      0.02      0.04       512
+
+    accuracy                           0.90      5242
+   macro avg       0.64      0.51      0.49      5242
+weighted avg       0.85      0.90      0.86      5242
+Current column is fire.
+
+              precision    recall  f1-score   support
+
+         0.0       0.99      1.00      0.99      5176
+         1.0       0.00      0.00      0.00        66
+
+    accuracy                           0.99      5242
+   macro avg       0.49      0.50      0.50      5242
+weighted avg       0.97      0.99      0.98      5242
+Current column is earthquake.
+
+              precision    recall  f1-score   support
+
+         0.0       0.92      0.99      0.95      4741
+         1.0       0.74      0.17      0.28       501
+
+    accuracy                           0.92      5242
+   macro avg       0.83      0.58      0.62      5242
+weighted avg       0.90      0.92      0.89      5242
+Current column is cold.
+
+              precision    recall  f1-score   support
+
+         0.0       0.98      1.00      0.99      5145
+         1.0       0.00      0.00      0.00        97
+
+    accuracy                           0.98      5242
+   macro avg       0.49      0.50      0.50      5242
+weighted avg       0.96      0.98      0.97      5242
+Current column is other_weather.
+
+              precision    recall  f1-score   support
+
+         0.0       0.95      1.00      0.97      4968
+         1.0       0.00      0.00      0.00       274
+
+    accuracy                           0.95      5242
+   macro avg       0.47      0.50      0.49      5242
+weighted avg       0.90      0.95      0.92      5242
+Current column is direct_report.
+
+              precision    recall  f1-score   support
+
+         0.0       0.81      0.98      0.89      4229
+         1.0       0.39      0.04      0.07      1013
+
+    accuracy                           0.80      5242
+   macro avg       0.60      0.51      0.48      5242
+weighted avg       0.73      0.80      0.73      5242
