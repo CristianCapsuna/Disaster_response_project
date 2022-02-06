@@ -5,10 +5,10 @@ from sqlalchemy import create_engine
 
 def load_data(messages_filepath, categories_filepath):
     # load messages dataset
-    messages = pd.read_csv(messages_filepath + '.csv')
+    messages = pd.read_csv(messages_filepath)
 
     # load categories dataset
-    categories = pd.read_csv(categories_filepath + '.csv')
+    categories = pd.read_csv(categories_filepath)
 
     # merge datasets
     df = pd.merge(messages, categories, on = 'id')
@@ -53,8 +53,8 @@ def clean_data(df):
 
 def save_data(df, database_filename):
     
-    engine = create_engine('sqlite:///' + database_filename + '.db')
-    df.to_sql(database_filename + '.db', engine, index=False)
+    engine = create_engine('sqlite:///data/' + database_filename)
+    df.to_sql(database_filename[:-3], engine, index=False)
 
 
 def main():
@@ -86,4 +86,4 @@ def main():
 if __name__ == '__main__':
     main()
 
-# py data/process_data.py disaster_messages disaster_categories disaster_database
+# python data/process_data.py disaster_messages.csv disaster_categories.csv disaster_database.db

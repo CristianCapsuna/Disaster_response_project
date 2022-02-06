@@ -12,10 +12,15 @@ from nltk.stem.wordnet import WordNetLemmatizer
 from nltk.corpus import stopwords
 import re
 import pickle
+import nltk
+nltk.download('stopwords')
+nltk.download('punkt')
+nltk.download('wordnet') # download for lemmatization
+nltk.download('omw-1.4')
 
 def load_data(database_filepath):
-    engine = create_engine('sqlite:///' + database_filepath + '.db')
-    df = pd.read_sql('SELECT * FROM ' + database_filepath + '.db', con = engine)
+    engine = create_engine('sqlite:///data/' + database_filepath)
+    df = pd.read_sql('SELECT * FROM ' + database_filepath[:-3], con = engine)
 
     X = df['message'].to_numpy()
     category_names = df.columns.tolist()[1:]
@@ -53,7 +58,7 @@ def build_model():
 def evaluate_model(model, X_test, Y_test, category_names):
     Y_pred = model.predict(X_test)
 
-    with open("model_results.txt", "w") as f:
+    with open("models/model_results.txt", "w") as f:
 
         for index, column in enumerate(category_names):
             f.write('Current column is {}.\n\n'.format(column))
@@ -64,7 +69,7 @@ def evaluate_model(model, X_test, Y_test, category_names):
 
 
 def save_model(model, model_filepath):
-    with open(model_filepath + '.pkl', 'wb') as f:
+    with open('models/' + model_filepath, 'wb') as f:
         pickle.dump(model, f)
 
 
@@ -100,4 +105,4 @@ def main():
 if __name__ == '__main__':
     main()
 
-# py model/train_classifier.py disaster_database my_model
+# python model/train_classifier.py disaster_database.db my_model.pkl
