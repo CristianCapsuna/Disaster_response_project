@@ -4,17 +4,57 @@ from sqlalchemy import create_engine
 
 
 def load_data(messages_filepath, categories_filepath):
-    messages = pd.read_csv('messages.csv')
-    categories = pd.read_csv('categories.csv')
+    # load messages dataset
+    messages = pd.read_csv(messages_filepath + '.csv')
+
+    # load categories dataset
+    categories = pd.read_csv(categories_filepath + '.csv')
+
+    # merge datasets
     df = pd.merge(messages, categories, on = 'id')
-    categories = categories['categories'].str.split(';', expand = True)
+
+    return df
 
 def clean_data(df):
-    pass
+    # split the categories data
+    df = pd.concat([df[['message']] ,df['categories'].str.split(';', expand = True)], axis = 1)
+
+    # take the first row minus the messages column
+    row_except_message = df.iloc[0,1:]
+
+    # take only the name of the categories
+    category_colnames = ['message']
+    for name in row_except_message:
+        category_colnames.append(name[:-2])
+
+    # assigning the name of the categories as column headers
+    df.columns = category_colnames
+
+    # filter the categories to leave just the label state (0 or 1)
+    for column in df.columns[1:]:
+        # set each value to be the last character of the string
+        df[column] = df[column].str[-1]
+        
+        # convert column from string to numeric
+        df[column] = df[column].astype(int)
+    
+    df = df.drop_duplicates()
+    
+    columns = df.columns.tolist()
+    # removing the child_alone column because it doesn't have a 1 label
+    columns.remove('child_alone')
+
+    df = df[columns]
+
+    # data has no nans
+
+    return df
 
 
 def save_data(df, database_filename):
-    pass  
+    
+    engine = create_engine('sqlite:///' + database_filename + '.db')
+    df.to_sql(database_filename + '.db', engine, index=False)
 
 
 def main():
@@ -45,3 +85,5 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+# py data/process_data.py disaster_messages disaster_categories disaster_database
