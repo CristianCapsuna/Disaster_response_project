@@ -1,10 +1,6 @@
 .venv
 .vscode
 __pycache__
-google_tutorials
-embedding
-Disaster_database.db
-my_model.pkl
 model_results.txt
 test.py
 test.ipynb

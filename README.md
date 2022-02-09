@@ -1,5 +1,15 @@
 # Disaster Response Pipeline Project
 
+## Motivation
+
+This project was created to experiment with machine learning solutions offered by sci-kit-learn and visualization capabilities offered by plotly and flask.
+
+## Requirements
+
+- windows or mac
+- python 3.10
+- libraries provided in requirements.txt
+
 ### Instructions:
 1. Run the following commands in the project's root directory to set up your database and model.
 
