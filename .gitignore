@@ -4,4 +4,11 @@ __pycache__
 google_tutorials
 embedding
 Disaster_database.db
-models
+my_model.pkl
+model_results.txt
+test.py
+test.ipynb
+classification reports
+model_reports
+model_reports_basic
+model_reports_max_len_150

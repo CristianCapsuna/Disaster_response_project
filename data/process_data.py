@@ -17,13 +17,13 @@ def load_data(messages_filepath, categories_filepath):
 
 def clean_data(df):
     # split the categories data
-    df = pd.concat([df[['message']] ,df['categories'].str.split(';', expand = True)], axis = 1)
+    df = pd.concat([df[['message', 'genre']] ,df['categories'].str.split(';', expand = True)], axis = 1)
 
     # take the first row minus the messages column
-    row_except_message = df.iloc[0,1:]
+    row_except_message = df.iloc[0,2:]
 
     # take only the name of the categories
-    category_colnames = ['message']
+    category_colnames = ['message', 'genre']
     for name in row_except_message:
         category_colnames.append(name[:-2])
 
@@ -31,7 +31,7 @@ def clean_data(df):
     df.columns = category_colnames
 
     # filter the categories to leave just the label state (0 or 1)
-    for column in df.columns[1:]:
+    for column in df.columns[2:]:
         # set each value to be the last character of the string
         df[column] = df[column].str[-1]
         
@@ -53,8 +53,8 @@ def clean_data(df):
 
 def save_data(df, database_filename):
     
-    engine = create_engine('sqlite:///data/' + database_filename)
-    df.to_sql(database_filename[:-3], engine, index=False)
+    engine = create_engine('sqlite:///' + database_filename)
+    df.to_sql(database_filename[:-3].split('/')[1], engine, index=False)
 
 
 def main():
@@ -86,4 +86,4 @@ def main():
 if __name__ == '__main__':
     main()
 
-# python data/process_data.py disaster_messages.csv disaster_categories.csv disaster_database.db
+# python data/process_data.py data/disaster_messages.csv data/disaster_categories.csv data/DisasterResponse.db
