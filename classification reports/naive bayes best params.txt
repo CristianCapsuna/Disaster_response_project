@@ -1,6 +1,0 @@
-{'clasification_model__estimator__alpha': 1,
- 'text_pipeline__tfidf__sublinear_tf': True,
- 'text_pipeline__tfidf__use_idf': False,
- 'text_pipeline__vect__max_df': 0.5,
- 'text_pipeline__vect__max_features': None,
- 'text_pipeline__vect__ngram_range': (1, 2)}
