@@ -2,6 +2,12 @@ import sys
 import pandas as pd
 from sqlalchemy import create_engine
 
+def switch_two(x):
+    if x == 1 or x == 2:
+        return 1
+    else:
+        return 0
+
 
 def load_data(messages_filepath, categories_filepath):
     # load messages dataset
@@ -37,6 +43,8 @@ def clean_data(df):
         
         # convert column from string to numeric
         df[column] = df[column].astype(int)
+
+    df['related'] = df['related'].map(lambda x: switch_two(x))
     
     df = df.drop_duplicates()
     
@@ -45,6 +53,7 @@ def clean_data(df):
     columns.remove('child_alone')
 
     df = df[columns]
+    
 
     # data has no nans
 
@@ -54,7 +63,7 @@ def clean_data(df):
 def save_data(df, database_filename):
     
     engine = create_engine('sqlite:///' + database_filename)
-    df.to_sql(database_filename[:-3].split('/')[1], engine, index=False)
+    df.to_sql(database_filename[:-3].split('/')[1], engine, if_exists='replace', index=False)
 
 
 def main():
