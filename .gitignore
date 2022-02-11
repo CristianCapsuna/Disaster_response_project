@@ -10,3 +10,4 @@ model_reports_basic
 model_reports_max_len_150
 .DS_Store
 DisasterResponse.db
+classifier.pkl
