@@ -3,6 +3,10 @@ import pandas as pd
 from sqlalchemy import create_engine
 
 def switch_two(x):
+    """
+    One of thecolumns in the labels dataset has more than two values. This function will convert that column into binary values only
+    """
+
     if x == 1 or x == 2:
         return 1
     else:
@@ -10,6 +14,9 @@ def switch_two(x):
 
 
 def load_data(messages_filepath, categories_filepath):
+    """
+    Function to load the data from their CSVs and join them on their IDs
+    """
     # load messages dataset
     messages = pd.read_csv(messages_filepath)
 
@@ -22,6 +29,13 @@ def load_data(messages_filepath, categories_filepath):
     return df
 
 def clean_data(df):
+    """
+    Here the folowing procedures are done:
+    1) splitting the categories dataset in individual columns
+    2) converting the `related` column to binay values
+    3) eliminating duplicates
+    4) eliminating the child_alone column as there are only 0 labels in it so cannot be used to train a model
+    """
     # split the categories data
     df = pd.concat([df[['message', 'genre']] ,df['categories'].str.split(';', expand = True)], axis = 1)
 
@@ -61,12 +75,18 @@ def clean_data(df):
 
 
 def save_data(df, database_filename):
+    """
+    This function will save the data from one dataframe to a database.
+    """
     
     engine = create_engine('sqlite:///' + database_filename)
     df.to_sql(database_filename[:-3].split('/')[1], engine, if_exists='replace', index=False)
 
 
 def main():
+    """
+    Main function use to orchestrate the importing, cleaning and exporting of the data for this project
+    """
     if len(sys.argv) == 4:
 
         messages_filepath, categories_filepath, database_filepath = sys.argv[1:]

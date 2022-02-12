@@ -13,12 +13,16 @@ from nltk.corpus import stopwords
 import re
 import pickle
 import nltk
+from sklearn.model_selection import GridSearchCV
 nltk.download('stopwords')
 nltk.download('punkt')
 nltk.download('wordnet') # download for lemmatization
 nltk.download('omw-1.4')
 
 def load_data(database_filepath):
+    """
+    Loads the dataset from a database and attempts to split it into individual arrays for messages and categories
+    """
     engine = create_engine('sqlite:///' + database_filepath)
     df = pd.read_sql('SELECT * FROM ' + database_filepath[:-3].split('/')[1], con = engine)
 
@@ -30,6 +34,14 @@ def load_data(database_filepath):
 
 
 def tokenize(text):
+    """
+    The tokenization process does the following:
+    1) eliminates punctuation
+    2) converts words into an indexed vocabulary
+    3) eliminates common words like `is`, `the`, etc
+    4) brings nouns to their base forms. I think this means the infinitive tense
+    5) brings vers to their base forms. I think this means the infinitive tense
+    """
     cachedStopWords = stopwords.words("english")
     # Normalize text and get ride of punctuation
     text = re.sub(r"[^a-zA-Z0-9]", " ", text.lower())
@@ -45,17 +57,34 @@ def tokenize(text):
 
 
 def build_model():
+    """
+    Assembles the desired pieces into a the model and returns it ready for fitment
+    """
 
     basic_MultinomialNB = Pipeline([('text_pipeline', Pipeline([
                 ('vect', CountVectorizer(tokenizer=tokenize)),
                 ('tfidf', TfidfTransformer())
             ])), \
             ('clasification_model', MultiOutputClassifier(MultinomialNB()))])
-    
-    return basic_MultinomialNB
+
+    parameters = {
+        'text_pipeline__vect__ngram_range': ((1, 1), (1, 2)),
+        'text_pipeline__vect__max_df': (0.5, 0.75, 1.0),
+        'text_pipeline__vect__max_features': (None, 5000, 10000),
+        'text_pipeline__tfidf__use_idf': (True, False),
+        'text_pipeline__tfidf__sublinear_tf': (True, False),
+        'clasification_model__estimator__alpha': (0.5, 1)
+    }
+
+    cv = GridSearchCV(basic_MultinomialNB, parameters)
+  
+    return cv
 
 
 def evaluate_model(model, X_test, Y_test, category_names):
+    """
+    After model fitting this will evaluate the model peformance
+    """
     Y_pred = model.predict(X_test)
 
     with open("models/model_results.txt", "w") as f:
@@ -69,11 +98,17 @@ def evaluate_model(model, X_test, Y_test, category_names):
 
 
 def save_model(model, model_filepath):
+    """
+    Exports the trained model using python's built in persistence mechanism, pickle
+    """
     with open(model_filepath, 'wb') as f:
         pickle.dump(model, f)
 
 
 def main():
+    """
+    Main function used to orchestrate the load, assemble, train, predict, save process
+    """
 
     if len(sys.argv) == 3:
         database_filepath, model_filepath = sys.argv[1:]

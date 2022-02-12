@@ -30,3 +30,10 @@ This project was created to experiment with machine learning solutions offered b
     `python run.py`
 
 3. Follow the http address given by flask in the CLI to check the visualization
+
+## Aknowledgements
+
+I would like to thank scikit-learn for putting together this amazing library and the programming community for doing so much knowledge sharing. Especially for this project:
+- Alan Jones from Medium for his [post](https://towardsdatascience.com/web-visualization-with-plotly-and-flask-3660abf9c946) on flask and plotly
+- Koo Ping Shung from Medium for his [post](https://towardsdatascience.com/accuracy-precision-recall-or-f1-331fb37c5cb9) regarding accuracy, presission, recall and F1
+- Javed Shaikh from towardsdatascience for his [post](https://towardsdatascience.com/machine-learning-nlp-text-classification-using-scikit-learn-python-and-nltk-c52b92a7c73a) showing different different algorithms that can be used.

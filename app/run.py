@@ -2,8 +2,9 @@ import json
 import plotly
 import pandas as pd
 
-from nltk.stem import WordNetLemmatizer
+from nltk.stem.wordnet import WordNetLemmatizer
 from nltk.tokenize import word_tokenize
+from nltk.corpus import stopwords
 
 from flask import Flask
 from flask import render_template, request, jsonify
@@ -12,20 +13,49 @@ from plotly.graph_objects import Bar
 import joblib
 from sqlalchemy import create_engine
 import plotly.express as px
+import nltk
+import re
+
+nltk.download('stopwords')
+nltk.download('punkt')
+nltk.download('wordnet') # download for lemmatization
+nltk.download('omw-1.4')
 
 
 app = Flask(__name__)
 
 def tokenize(text):
-    tokens = word_tokenize(text)
-    lemmatizer = WordNetLemmatizer()
+    """
+    The tokenization process does the following:
+    1) eliminates punctuation
+    2) converts words into an indexed vocabulary
+    3) eliminates common words like `is`, `the`, etc
+    4) brings nouns to their base forms. I think this means the infinitive tense
+    5) brings vers to their base forms. I think this means the infinitive tense
+    """
 
-    clean_tokens = []
-    for tok in tokens:
-        clean_tok = lemmatizer.lemmatize(tok).lower().strip()
-        clean_tokens.append(clean_tok)
+    # tokens = word_tokenize(text)
+    # lemmatizer = WordNetLemmatizer()
 
-    return clean_tokens
+    # clean_tokens = []
+    # for tok in tokens:
+    #     clean_tok = lemmatizer.lemmatize(tok).lower().strip()
+    #     clean_tokens.append(clean_tok)
+
+    cachedStopWords = stopwords.words("english")
+    # Normalize text and get ride of punctuation
+    text = re.sub(r"[^a-zA-Z0-9]", " ", text.lower())
+    # Actual tokenization
+    words = word_tokenize(text)
+    # Getting rid of common words
+    words = [w for w in words if w not in cachedStopWords]
+    # 1st pass at reducing words to base form using nouns
+    words_noun_lemmed = [WordNetLemmatizer().lemmatize(w) for w in words]
+    # 2nd pass at reducing words to base form using verbs
+    words_verb_lemmed = [WordNetLemmatizer().lemmatize(w, pos = 'v') for w in words_noun_lemmed]
+    return words_verb_lemmed
+
+    return words_verb_lemmed
 
 # load data
 engine = create_engine('sqlite:///data/DisasterResponse.db')
@@ -39,6 +69,9 @@ model = joblib.load("models/classifier.pkl")
 @app.route('/')
 @app.route('/index')
 def index():
+    """
+    Takes the master template for the main page and adds 3 visualizations to show some key characteristics of our dataset
+    """
     
     graphs = []
 
@@ -117,6 +150,9 @@ def index():
 # web page that handles user query and displays model results
 @app.route('/go')
 def go():
+    """
+    Defines what happens when we input new text for the app to classify in the provided box
+    """
     # save user input in query
     query = request.args.get('query', '') 
 
@@ -133,6 +169,9 @@ def go():
 
 
 def main():
+    """
+    Main function to activate the flask app.
+    """
     app.run(host='0.0.0.0', port=3001, debug=True)
 
 
